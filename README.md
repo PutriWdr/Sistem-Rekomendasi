@@ -1,8 +1,12 @@
-# Laporan Proyek Machine Learning - Nama Anda
+# Laporan Proyek Machine Learning: Sistem Rekomendasi Movie - Putri Wulandari
+-- --
+### Domain proyek  
 
-## Project Overview
+> **Domain proyek yang dipilih pada proyek machine learning ini ialah terkait industri perfilman dengan judul proyek "Sistem Rekomendasi Movie"**.
 
-Pada bagian ini, Kamu perlu menuliskan latar belakang yang relevan dengan proyek yang diangkat.
+* Latar Belakang
+
+Film adalah salah satu media hiburan yang populer di masyarakat. Banyaknya judul-judul yang telah rilis membuat masyarakat kesulitan untuk menemukan film mana yang mereka ingin tonton. Untuk mengatasi masalah tersebut, perlu adanya informasi mengenai film yang akan memudahkan masyarakat untuk menemukan film yang cocok dengan preferensi user. Oleh karena itu, user perlu sebuah sistem yang dapat memberikan rekomendasi film.
 
 **Rubrik/Kriteria Tambahan (Opsional)**:
 - Jelaskan mengapa proyek ini penting untuk diselesaikan.
