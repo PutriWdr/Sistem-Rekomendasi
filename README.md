@@ -4,7 +4,7 @@
 
 > **Domain proyek yang dipilih pada proyek machine learning ini ialah terkait industri perfilman dengan judul proyek "Sistem Rekomendasi Movie"**.
 
-* Latar Belakang
+## Latar Belakang
 
 Gambar1. Informasi mengenai movie di indonesia melalui website pendukung.
 
