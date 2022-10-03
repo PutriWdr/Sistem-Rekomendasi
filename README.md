@@ -28,25 +28,47 @@ Berdasarkan latar belakang di atas maka terdapat rumusan masalah yang dapat dise
 Berdasarkan rumusan masalah di atas maka mendapat penyelesaian sebagai berikut:
 
 - Diharapkan membuat pelanggan lebih mudah menemukan judul film yang tepat dengan bantuan sistem rekomendasi judul film berdasarkan genre yang dibuat.
--  Diharapkan melakukan pra-pemrosesan dengan baik agar dapat digunakan dalam pembuatan model.
+- Diharapkan melakukan pra-pemrosesan dengan baik agar dapat digunakan dalam pembuatan model.
 
 ### Solution statements
    
    Solusi yang dapat dilakukan untuk memenuhi tujuan dari proyek ini ialah sebagai berikut:
-* Untuk pra-pemrosesan data dapat dilakukan beberapa teknik, diantaranya :
+* Untuk pra-pemrosesan data dapat dilakukan beberapa teknik, antara lain:
     * Mengecek masalah data yang kosong dengan melakukan pengecekan terlebih dahulu.
-    * Menghitung besar/panjang data pada dataset terlebih dahulu kemudian mencoba untuk menguraikan jenis-jenis fitur pada kolom genre
+    * Menghitung besar atau panjang data pada dataset. Kemudian, mencoba untuk menguraikan jenis-jenis fitur pada kolom genre.
     * mengurutkan data movieId dan menghapus data yg sama
-    * Membuang judul film yg duplikat dengan method ``` drop_duplicats()``` 
-## Data Understanding
-Paragraf awal bagian ini menjelaskan informasi mengenai jumlah data, kondisi data, dan informasi mengenai data yang digunakan. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
+    * Membuang judul film yg duplikat dengan method ``` drop_duplicats()```.
+* Metode yang digunakan pada projek ini adalah Content Based Filtering. Content Based Filtering adalah rekomendasi berbasis konten yang merekomendasikan item yang memiliki kemiripan dengan item yang disukai/diinput pengguna sebelumnya. Metode ini bekerja dengan menyarankan item serupa yang pernah disukai sebelumnya atau sedang dilihat sekarang kepada pengguna berdasrakan kategori tertentu dari item yang dinilai oleh pengguna. Content-based filtering mempelajari profil minat pengguna baru berdasarkan data dari objek yang telah dinilai pengguna [[6](http://103.23.20.161/index.php/semnasif/article/view/1148)]. Kelebihan dan Kekurangan dari Content-based Filtering ialah sebagai berikut:
+    * Kekurangan
+      * New User
+        Sistem tidak dapat memberikan rekomendasi yang dapat diandalkan pada pengguna baru, karena membutuhkan penelusuran terlebih dahulu pada preferensi pengguna.
+    * Kelebihan
+      * User Independence
+        Tidak bergantung kepada user lain dalam memberikan rekomendasi yang ada. New Item Mampu merekomendasikan item yang belum dinilai oleh setiap pengguna. 
+     
+# Data Understanding
+---
+![WhatsApp Image 2022-09-28 at 20 26 34](https://user-images.githubusercontent.com/111127023/193491025-94791318-f78b-4719-b22d-754191617cbe.jpeg)
 
-Selanjutnya, uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:  
+Data pada project ini menggunakan data yang bersumber pada sebuah situs kaggle. Dimana, fokus pada data tersebut menyajikan data-data daftar film dari yg terlama hingga ke yg terbaru serta memberikan korelasi dengan data rating yg disediakan pada dataset (tidak terlalu banyak digunakan pada studi kasus projek ini).
+Informasi dataset dapat dilihat pada tabel dibawah ini:
 
-Variabel-variabel pada Restaurant UCI dataset adalah sebagai berikut:
-- accepts : merupakan jenis pembayaran yang diterima pada restoran tertentu.
-- cuisine : merupakan jenis masakan yang disajikan pada restoran.
-- dst
+Jenis | Keterangan
+--- | ---
+Sumber | (https://www.kaggle.com/datasets/sayan0211/movie-recomendation-pjct)
+Lisensi | Unknown
+Kategori | Movies, TV Shows, Recomendations Movie Dataset
+Jenis dan Ukuran Berkas | Zip (866 kB)
+
+Berikut ini beberapa tahapan Data Understanding antara lain:
+- Meload Dataset ke dalam sebuah Dataframe menggunakan pandas
+- ``` df.info()``` digunakan untuk mengecek tipe kolom pada dataset
+- ```df.isna().sum()``` digunakan untuk mengecek apakah ada kolom yg kosong, pada dataset ini nilai kosong tidak ditemukan
+- ```df.describe()``` digunakan utk mendapatkan info mengenai dataset terhadap nilai rata-rata, median, banyaknya data, nilai Q1 hingga Q3 dan lain-lain.
+- ``` len(nama_variable.unique()) ```menghitung panjang data unique dari variable tertentu
+- Mengurutkan dataset dan menghapus data movieId yg sama
+
+
 
 **Rubrik/Kriteria Tambahan (Opsional)**:
 - Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data beserta insight atau exploratory data analysis.
