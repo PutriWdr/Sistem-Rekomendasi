@@ -205,28 +205,7 @@ Output:
 3	    Adventure|Comedy|Thriller	        2
 4	    Adventure|Comedy|Crime|Thriller	    1
 
-~~~
-Dari output tersebut dihitung accuracy precision nya adalah
-```
-TP = 19 #jumlah prediksi benar untuk genre yang mirip atau serupa
-FP = 0 #jumlah prediksi salah untuk genre yang mirip atau serupa
 
-Precision = TP/(TP+FP)
-print("{0:.0%}".format(Precision))
-
-```
-Dipilih nya nilai True Positif 19 karna ia merupakan nilai atau jumlah yg diduga memiliki kemiripan/identik dengan genre yg dipilih yaitu 19 (7+6+3+2+1). hasil rekomendasi yg dihasilkan model menunjukan kemiripan dengan genre film yg dinput yaitu Adventure|comedy|thriller
-sedangkan utk nilai False Positif tidak teridentifikasi pada hasil output dari genre yg diinput maka nilai nya 0 
-
-Output:
-```
-100%
-```
-Kesimpulan dari output yang dihasilkan bahwa prediksi rekomendasi yang diberikan 100% presisi sesuai genre yang mirip atau serupa dengan genre dari judul yang diinput.
-
-## Referensi
----
-[1] ~~~
 Dari output tersebut dihitung accuracy precision nya adalah
 ```
 TP = 19 #jumlah prediksi benar untuk genre yang mirip atau serupa
@@ -241,10 +220,10 @@ Output:
 ```
 100%
 ```
-Kesimpulan dari output yang dihasilkan bahwa prediksi rekomendasi yang diberikan 100% presisi sesuai genre yang mirip atau serupa dengan genre dari judul yang diinput.
-## Referensi
----
-[1] ~~~
+## Kesimpulan
+
+Dari output yang dihasilkan bahwa prediksi rekomendasi yang diberikan 100% presisi sesuai genre yang mirip atau serupa dengan genre dari judul yang diinput.
+
 Dari output tersebut dihitung accuracy precision nya adalah
 ```
 TP = 19 #jumlah prediksi benar untuk genre yang mirip atau serupa
