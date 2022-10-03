@@ -6,6 +6,8 @@
 
 * Latar Belakang
 
+Gambar1. Informasi mengenai movie di indonesia melalui website pendukung.
+
 ![WhatsApp Image 2022-09-28 at 20 41 33](https://user-images.githubusercontent.com/111127023/193485195-b9849a5e-7717-48e4-8c21-e1f9418d92e1.jpeg)
 
 Film adalah salah satu media hiburan yang populer di masyarakat. Banyaknya judul-judul yang telah rilis membuat masyarakat kesulitan untuk menemukan film mana yang mereka ingin tonton. Untuk mengatasi masalah tersebut, perlu adanya informasi mengenai film yang akan memudahkan masyarakat untuk menemukan film yang cocok dengan preferensi user. Oleh karena itu, user perlu sebuah sistem yang dapat memberikan rekomendasi film.
@@ -48,10 +50,14 @@ Berdasarkan rumusan masalah di atas maka mendapat penyelesaian sebagai berikut:
      
 # Data Understanding
 ---
+Gambar2. Dataset bersumber kaggle
+
 ![WhatsApp Image 2022-09-28 at 20 26 34](https://user-images.githubusercontent.com/111127023/193491025-94791318-f78b-4719-b22d-754191617cbe.jpeg)
 
 Data pada project ini menggunakan data yang bersumber pada sebuah situs kaggle. Dimana, fokus pada data tersebut menyajikan data-data daftar film dari yg terlama hingga ke yg terbaru serta memberikan korelasi dengan data rating yg disediakan pada dataset (tidak terlalu banyak digunakan pada studi kasus projek ini).
 Informasi dataset dapat dilihat pada tabel dibawah ini:
+
+Tabel1. Keterangan mengenai dataset
 
 Jenis | Keterangan
 --- | ---
@@ -68,21 +74,57 @@ Berikut ini beberapa tahapan Data Understanding antara lain:
 - ``` len(nama_variable.unique()) ```menghitung panjang data unique dari variable tertentu
 - Mengurutkan dataset dan menghapus data movieId yg sama
 
+Gambar3. Mengurutkan dataset dan menghapus data movieId yg sama
 
+![WhatsApp Image 2022-10-03 at 09 51 56](https://user-images.githubusercontent.com/111127023/193497353-f29fc4c7-0918-4455-b1c2-8058467b9763.jpeg)
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data beserta insight atau exploratory data analysis.
+Gambar4. Menampilkan rata-rata genre yg paling banyak muncul pada dataset
 
-## Data Preparation
-Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.
+![WhatsApp Image 2022-10-03 at 09 58 43](https://user-images.githubusercontent.com/111127023/193497566-0b8e4f31-a1e1-4b9d-aaa4-c46aeb24edeb.jpeg)
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan proses data preparation yang dilakukan
-- Menjelaskan alasan mengapa diperlukan tahapan data preparation tersebut.
+Pada berkas yang diunduh yakni movies.csv berisi 9743 rows × 3 columns dan ratings.csv berisi 100k++ baris dan 4 columns. Kolom-kolom tersebut terdiri dari 2 buah kolom bertipe objek dan 1 buah kolom bertipe numerik (tipe data int64) pada file movies.csv dan pada files ratings.csv terdiri dari 4 buah kolom bertipe numerik (int64 dan float64). Untuk itu, penjelasan mengenai variabel-variable pada dataset movies recomendation ini dapat dilihat sebagai berikut:
 
-## Modeling
-Tahapan ini membahas mengenai model sisten rekomendasi yang Anda buat untuk menyelesaikan permasalahan. Sajikan top-N recommendation sebagai output.
+- movieId merupakan parameter bernilai unique. Parameter ini digunakan utk mengindetifikasi daftar tiap-tiap film.
+- userId merupakan parameter bernilai unique. Parameter ini digunakan utk mengindetifikasi daftar tiap-tiap pengguna.
+- rating merupakan parameter berisi nilai rating film yg diberikan pengguna.
+- genre merupakan parameter yg menyimpan tiap-tiap kategori film.
+- title merupakan parameter yg menyimpan judul masing-masing film.
 
+# Data Preparation
+---
+Berikut ini ialah ialah tahapan-tahapan dalam melakukan Persiapan data:
+
+Gambar5. Menghitung jumlah data pada genre
+
+![WhatsApp Image 2022-10-03 at 10 08 19](https://user-images.githubusercontent.com/111127023/193499666-32b5a983-5e63-4b7e-8f25-09fc65fa8234.jpeg)
+
+Gambar6. Drop judul yg duplikat (membersihkan data)
+
+![WhatsApp Image 2022-10-03 at 10 11 52](https://user-images.githubusercontent.com/111127023/193499779-c0b838ce-353d-4b26-b3d2-92f18029c325.jpeg)
+
+Gambar7. Mereset ulang penomoran index data (tranformasi data)
+
+![WhatsApp Image 2022-10-03 at 10 13 19](https://user-images.githubusercontent.com/111127023/193499978-7edd4b50-e4c9-4280-8fb7-a28c10a8aa39.jpeg)
+
+Teknik yang digunakan pada tahapan Proses Data adalah vektorisasi fungsi CountVectorizer dari library scikit-learn. CountVectorizer digunakan untuk mengubah teks yang diberikan menjadi vektor berdasarkan frekuensi (jumlah) setiap kata yang muncul di seluruh teks. CountVectorizer membuat matriks di mana setiap kata unik diwakili oleh kolom matriks, dan setiap sampel teks dari dokumen adalah baris dalam matriks. Nilai setiap sel tidak lain adalah jumlah kata dalam sampel teks tertentu. Pada proses vektorisasi digunakan metode sebagai berikut:
+
+Gambar8. fit metode berfungsi untuk melakukan perhitungan idf pada data
+
+![WhatsApp Image 2022-10-03 at 10 15 10](https://user-images.githubusercontent.com/111127023/193500179-d89fca8a-6f5d-4ee1-82d1-7c5b992a97ad.jpeg)
+
+get_feature_names_out() berfungsi untuk melakukan mapping array dari fitur index integer ke fitur nama
+
+Gambar9. fit_transform() berfungsi untuk mempelajari kosa kata dan Inverse Document Frequency (IDF) dengan memberikan nilai return berupa document-term matrix
+
+![WhatsApp Image 2022-10-03 at 10 16 33](https://user-images.githubusercontent.com/111127023/193500440-1795406b-bb79-4209-b037-6737fbe293cf.jpeg)
+
+Gambar10. todense() berfungsi untuk mengubah vektor tf-idf dalam bentuk matriks
+
+![WhatsApp Image 2022-10-03 at 10 17 38](https://user-images.githubusercontent.com/111127023/193500554-ab69817c-7844-4221-92a4-51d9841d3beb.jpeg)
+
+# Modeling
+---
+Setelah dilakukan pra-pemrosesan pada dataset. Langkah selanjutnya ialah modeling terhadap data. Pada tahap ini Model machine learning yang digunakan pada sistem rekomendasi ialah model content-based filtering dengan simlarty measure yang digunakan adalah Cosine Similarity.. Model content-based filtering ini bekerja dengan mempelajari profil minat pengguna baru berdasarkan data dari objek yang telah dinilai pengguna. Metode ini bekerja dengan menyarankan item serupa yang pernah disukai sebelumnya atau sedang dilihat sekarang kepada pengguna berdasrakan kategori tertentu dari item yang dinilai oleh pengguna dengan menggunakan similarity tertentu.
 **Rubrik/Kriteria Tambahan (Opsional)**: 
 - Menyajikan dua solusi rekomendasi dengan algoritma yang berbeda.
 - Menjelaskan kelebihan dan kekurangan dari solusi/pendekatan yang dipilih.
