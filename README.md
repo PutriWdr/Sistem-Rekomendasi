@@ -10,7 +10,7 @@ Gambar1. Informasi mengenai movie di indonesia melalui website pendukung.
 
 ![WhatsApp Image 2022-09-28 at 20 41 33](https://user-images.githubusercontent.com/111127023/193485195-b9849a5e-7717-48e4-8c21-e1f9418d92e1.jpeg)
 
-Film adalah salah satu media hiburan yang populer di masyarakat. Banyaknya judul-judul yang telah rilis membuat masyarakat kesulitan untuk menemukan film mana yang mereka ingin tonton. Untuk mengatasi masalah tersebut, perlu adanya informasi mengenai film yang akan memudahkan masyarakat untuk menemukan film yang cocok dengan preferensi user. Oleh karena itu, user perlu sebuah sistem yang dapat memberikan rekomendasi film[1].
+Film adalah salah satu media hiburan yang populer di masyarakat. Banyaknya judul-judul yang telah rilis membuat masyarakat kesulitan untuk menemukan film mana yang mereka ingin tonton. Untuk mengatasi masalah tersebut, perlu adanya informasi mengenai film yang akan memudahkan masyarakat untuk menemukan film yang cocok dengan preferensi *user. Oleh karena itu, *user* perlu sebuah sistem yang dapat memberikan rekomendasi film[1].
 
 Dari sekian banyaknya film yang diproduksi membuat calon penonton kesulitan dalam menentukan film yang akan ditontonnya. Untuk mencari film tentunya akan memakan waktu, selain itu film yang sudah ditentukan untuk ditonton belum tentu sesuai dengan keinginan calon penonton setelah menontonnya, sehingga akan menghabiskan waktu lebih banyak lagi. Menonton film melalui bioskop, platform penyedia layanan streaming, maupun penyewaan dan pembelian kaset DVD juga diperlukan biaya, akan terbuang sia-sia apabila film yang ditonton tidak sesuai keinginan.
 Dalam mencari kemiripan dapat menggunakan metode cosine similarity yang digunakan dalam penelitian sistem temu kembali buku berbahasa Arab yang ditulis oleh (Fauzi, Arifin and Yuniarti, 2017)[2].
@@ -76,13 +76,12 @@ Berikut ini beberapa tahapan Data Understanding antara lain:
 - ``` len(nama_variable.unique()) ```menghitung panjang data unique dari variable tertentu
 - Mengurutkan dataset dan menghapus data movieId yg sama
 
-Gambar3. Mengurutkan dataset dan menghapus data movieId yg sama
+Menyiapkan path dataset pada penyimpanan content serta menampilkan overview dataset Movie menggunakan library pandas. Library pandas ialah alat yang sangat berguna sebagai library yang mengatur tata letak data sehingga mudah dicari secara intuitif. Pandas biasa digunakan untuk membuat tabel, mengubah dimensi data, mengecek data, dan lain sebagainya.
 
-![WhatsApp Image 2022-10-03 at 09 51 56](https://user-images.githubusercontent.com/111127023/193497353-f29fc4c7-0918-4455-b1c2-8058467b9763.jpeg)
+Kemudian, Memuat dataset ke dalam variable baru, memuat dataset ke dalam variable baru, mengurutkan data dan menghapus data yang sama dengan metode *sort* dan atribut *unique.*
+Dimana, metode sort ialah suatu proses penyusunan kembali kumpulan objek menggunakan tata aturan tertentu. Atribut unique digunakan untuk menghasilkan nilai unik dari suatu kolom, hasilnya dalam bentuk numpy array. 
 
-Gambar4. Menampilkan rata-rata genre yg paling banyak muncul pada dataset
-
-![WhatsApp Image 2022-10-03 at 09 58 43](https://user-images.githubusercontent.com/111127023/193497566-0b8e4f31-a1e1-4b9d-aaa4-c46aeb24edeb.jpeg)
+- Menampilkan jumlah kata paling banyak yang muncul dalam kolom genre menggunakan *counter.*
 
 Pada berkas yang diunduh yakni movies.csv berisi 9743 rows × 3 columns dan ratings.csv berisi 100k++ baris dan 4 columns. Kolom-kolom tersebut terdiri dari 2 buah kolom bertipe objek dan 1 buah kolom bertipe numerik (tipe data int64) pada file movies.csv dan pada files ratings.csv terdiri dari 4 buah kolom bertipe numerik (int64 dan float64). Untuk itu, penjelasan mengenai variabel-variable pada dataset movies recomendation ini dapat dilihat sebagai berikut:
 
@@ -96,31 +95,16 @@ Pada berkas yang diunduh yakni movies.csv berisi 9743 rows × 3 columns dan rati
 ---
 Berikut ini ialah ialah tahapan-tahapan dalam melakukan Persiapan data:
 
-Gambar5. Menghitung jumlah data pada genre
-
-![WhatsApp Image 2022-10-03 at 10 08 19](https://user-images.githubusercontent.com/111127023/193499666-32b5a983-5e63-4b7e-8f25-09fc65fa8234.jpeg)
-
-Gambar6. Drop judul yang duplikat (membersihkan data)
-
-![WhatsApp Image 2022-10-03 at 10 11 52](https://user-images.githubusercontent.com/111127023/193499779-c0b838ce-353d-4b26-b3d2-92f18029c325.jpeg)
-
-Gambar7. Mereset ulang penomoran index data (tranformasi data)
-
-![WhatsApp Image 2022-10-03 at 10 13 19](https://user-images.githubusercontent.com/111127023/193499978-7edd4b50-e4c9-4280-8fb7-a28c10a8aa39.jpeg)
+- Memilih kolom berdasarkan data yang dibutuhkan untuk melakukan content based learning berdasarkan genre yaitu judul dan genre.
+- Menghitung jumlah data pada genre dari setiap *unique value* menggunakan atribut *unique* .
+- Drop judul yang duplikat (membersihkan data) dengan menggunakan metode drop. Tujuannya menjatuhkan label tertentu dari baris dan kolom. Fungsi drop menghapus baris dan kolom.
+- Mereset ulang penomoran index data (tranformasi data) agar penomoran dilakukan berurutan. Menggunakan metode *reset index*. Tujuannya untuk mengatur ulang indeks dari DataFrame. ... index baru, harus dilakukan langkah reset index terlebih dahulu.
 
 Teknik yang digunakan pada tahapan Proses Data adalah vektorisasi fungsi CountVectorizer dari library scikit-learn. CountVectorizer digunakan untuk mengubah teks yang diberikan menjadi vektor berdasarkan frekuensi (jumlah) setiap kata yang muncul di seluruh teks. CountVectorizer membuat matriks di mana setiap kata unik diwakili oleh kolom matriks, dan setiap sampel teks dari dokumen adalah baris dalam matriks. Nilai setiap sel tidak lain adalah jumlah kata dalam sampel teks tertentu. Pada proses vektorisasi digunakan metode sebagai berikut:
 
-Gambar8. fit metode berfungsi untuk melakukan perhitungan idf pada data
-
-![WhatsApp Image 2022-10-03 at 10 15 10](https://user-images.githubusercontent.com/111127023/193500179-d89fca8a-6f5d-4ee1-82d1-7c5b992a97ad.jpeg)
-
-get_feature_names_out() berfungsi untuk melakukan mapping array dari fitur index integer ke fitur nama
-
-Gambar9. fit_transform() berfungsi untuk mempelajari kosa kata dan Inverse Document Frequency (IDF) dengan memberikan nilai return berupa document-term matrix
-
-![WhatsApp Image 2022-10-03 at 10 16 33](https://user-images.githubusercontent.com/111127023/193500440-1795406b-bb79-4209-b037-6737fbe293cf.jpeg)
-
-Gambar10. todense() berfungsi untuk mengubah vektor tf-idf dalam bentuk matriks
+- Fit metode berfungsi untuk melakukan perhitungan idf pada data. Melakukan Proses fit dan melihat jumlah ukuran matrix dengan melakukan fit lalu ditransformasikan ke bentuk matrix dan melihat ukuran matrix tfidf. get_feature_names_out() berfungsi untuk melakukan mapping array dari fitur index integer ke fitur nama.
+- Fit_transform() berfungsi untuk mempelajari kosa kata dan Inverse Document Frequency (IDF) dengan memberikan nilai return berupa document-term matrix.
+- Todense() berfungsi untuk mengubah vektor tf-idf dalam bentuk matriks.
 
 ![WhatsApp Image 2022-10-03 at 10 17 38](https://user-images.githubusercontent.com/111127023/193500554-ab69817c-7844-4221-92a4-51d9841d3beb.jpeg)
 
