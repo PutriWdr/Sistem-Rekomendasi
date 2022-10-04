@@ -127,23 +127,9 @@ Keterangan:
 
 Jika kedua objek memiliki nilai similaritas 1, maka kedua objek dikatakan identik dan sebaliknya. Semakin besar hasil dari fungsi similarity, maka kedua objek yang dievaluasi dianggap semakin mirip dan sebaliknya.
 
-- Berikut cara melatih model dengan menggunakan consine similarity.
-
-Gambar12. Cara melatih model dengan menggunakan consine similarity
-
-![WhatsApp Image 2022-10-03 at 10 26 48](https://user-images.githubusercontent.com/111127023/193513254-2b02efb8-abbc-4e19-98a9-66034d684d08.jpeg)
-
+- Berikut cara melatih model dengan menggunakan consine similarity. Cara melatih model dengan menggunakan algoritma *consine similarity dengan menghitung consine similarity pada matrix tf-idf.* Consine similarity ialah algoritma sebagai alat untuk membandingkan suatu kemiripan dari dokumen ke dokumen. Kemudian, Metode TF-IDF merupakan suatu cara untuk memberikan bobot hubungan suatu kata (term) terhadap dokumen. 
 - Pada tahapan ini menampilkan matriks kesamaan setiap judul dengan menampilkan judul film dalam 10 sampel kolom (axis = 1) dan 10 sampel baris (axis=0).
-
-Gambar13. Matriks kesamaan setiap judul dengan menampilkan judul film dalam 10 sampel kolom (axis = 1) dan 10 sampel baris (axis=0).
-
-![WhatsApp Image 2022-10-03 at 10 28 36](https://user-images.githubusercontent.com/111127023/193513795-c5ab6e45-19a4-4180-b113-94622d403793.jpeg)
-
-- Dalam pemanggilan rekomendasi judul film menggunakan function yang dibuat dengan code seperti di bawah ini:
-
-Gambar14. Pemanggilan rekomendasi judul film menggunakan function
-
-![WhatsApp Image 2022-10-03 at 10 32 10](https://user-images.githubusercontent.com/111127023/193514028-9b47256f-5b50-4005-8763-a92163ba521f.jpeg)
+- Dalam pemanggilan rekomendasi judul film menggunakan function.
 
 Tahapan yang dilakukan pada fungsi tersebut antara lain:
 
@@ -159,7 +145,6 @@ Berikut top-20 recommemdation berdasarkan genre dari judul film "Jhonny English 
 judul | genre
 ---|---
 Jhonny English Reborn (2011) | Adventure, Comedy, Thriller
-![WhatsApp Image 2022-10-03 at 10 34 34](https://user-images.githubusercontent.com/111127023/193514547-4165d0cf-c157-42be-8b06-e6707495f5ac.jpeg)
 Dengan hasil yang diberikan di atas berdasarkan judul film "Jhonny English Reborn (2011)" dengan genre Adventure, Comedy, Thriller maka didapatkan 19 rekomendasi judul film dengan genre yang serupa ataupun mirip.
 
 # Evaluation
@@ -176,9 +161,7 @@ Alasan accuracy Precision dipilih adalah karena metrik ini dapat membandingkan r
 
 Code yang digunakan untuk melihat jumlah genre yang mirip atau serupa adalah sebagai berikut.
 ~~~
-# menghitung banyaknya data genre pada hasil rekomendasi yg dilakukan 
-value = pd.DataFrame(recomendation['genre'].value_counts().reset_index().values, columns = ['genre', 'count'])
-value.head()
+Menghitung banyaknya data genre pada hasil rekomendasi yg dilakukan menggunakan dataframe dengan reset.index. 
 ~~~
 Output:
 
@@ -207,22 +190,6 @@ Output:
 ## Kesimpulan
 
 Dari output yang dihasilkan bahwa prediksi rekomendasi yang diberikan 100% presisi sesuai genre yang mirip atau serupa dengan genre dari judul yang diinput.
-
-Dari output tersebut dihitung accuracy precision nya adalah
-```
-TP = 19 #jumlah prediksi benar untuk genre yang mirip atau serupa
-FP = 0 #jumlah prediksi salah untuk genre yang mirip atau serupa
-
-Precision = TP/(TP+FP)
-print("{0:.0%}".format(Precision))
-```
-Dipilih nya nilai True Positif 19 karna ia merupakan nilai atau jumlah yg diduga memiliki kemiripan/identik dengan genre yg dipilih yaitu 19 (7+6+3+2+1). hasil rekomendasi yg dihasilkan model menunjukan kemiripan dengan genre film yg dinput yaitu Adventure|comedy|thriller
-sedangkan utk nilai False Positif tidak teridentifikasi pada hasil output dari genre yg diinput maka nilai nya 0 
-Output:
-```
-100%
-```
-Kesimpulan dari output yang dihasilkan bahwa prediksi rekomendasi yang diberikan 100% presisi sesuai genre yang mirip atau serupa dengan genre dari judul yang diinput.
 
 ## Referensi
 ---
